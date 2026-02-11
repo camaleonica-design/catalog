@@ -1,1 +1,127 @@
-<h1>Catálogo</h1>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catálogo de Ropa - Colores</title>
+    <style>
+        :root {
+            --rojo: #e63946;
+            --verde: #2d6a4f;
+            --verde-claro: #95d5b2;
+            --negro: #1a1a1a;
+            --blanco: #f8f9fa;
+        }
+
+        body { font-family: 'Segoe UI', sans-serif; background-color: #eee; margin: 0; padding: 20px; }
+        
+        h1 { text-align: center; color: #333; }
+
+        /* Filtros */
+        .filtros { display: flex; justify-content: center; gap: 10px; margin-bottom: 30px; flex-wrap: wrap; }
+        
+        .btn-filtro {
+            padding: 10px 20px; border: none; border-radius: 25px; cursor: pointer;
+            transition: 0.3s; font-weight: bold; text-transform: uppercase;
+        }
+
+        .btn-filtro[data-color="todos"] { background: #ddd; }
+        .btn-filtro[data-color="rojo"] { background: var(--rojo); color: white; }
+        .btn-filtro[data-color="verde"] { background: var(--verde); color: white; }
+        .btn-filtro[data-color="verde-claro"] { background: var(--verde-claro); }
+        .btn-filtro[data-color="negro"] { background: var(--negro); color: white; }
+
+        /* Cuadrícula de Productos */
+        .catalogo {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px; max-width: 1200px; margin: 0 auto;
+        }
+
+        .producto {
+            background: white; border-radius: 10px; overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1); text-align: center;
+            padding-bottom: 15px; transition: transform 0.3s;
+        }
+
+        .producto:hover { transform: translateY(-5px); }
+
+        .producto img { width: 100%; height: 250px; object-fit: cover; background: #ccc; }
+
+        .info h3 { margin: 15px 0 5px; color: #333; }
+        .tag { font-size: 0.8rem; padding: 3px 10px; border-radius: 10px; color: white; }
+
+        /* Clases para ocultar/mostrar */
+        .hidden { display: none; }
+    </style>
+</head>
+<body>
+
+    <h1>Mi Catálogo de Ropa</h1>
+
+    <div class="filtros">
+        <button class="btn-filtro" data-color="todos">Todos</button>
+        <button class="btn-filtro" data-color="rojo">Rojo</button>
+        <button class="btn-filtro" data-color="verde">Verde</button>
+        <button class="btn-filtro" data-color="verde-claro">Verde Claro</button>
+        <button class="btn-filtro" data-color="negro">Negro</button>
+    </div>
+
+    <div class="catalogo" id="catalogo">
+        <div class="producto" data-color="rojo">
+            <img src="https://via.placeholder.com/300x400/e63946/ffffff?text=Camiseta+Roja" alt="Ropa Roja">
+            <div class="info">
+                <h3>Camiseta Essential</h3>
+                <span class="tag" style="background: var(--rojo)">Rojo</span>
+                <p>$25.00</p>
+            </div>
+        </div>
+
+        <div class="producto" data-color="verde">
+            <img src="https://via.placeholder.com/300x400/2d6a4f/ffffff?text=Chaqueta+Verde" alt="Ropa Verde">
+            <div class="info">
+                <h3>Chaqueta Outdoor</h3>
+                <span class="tag" style="background: var(--verde)">Verde</span>
+                <p>$45.00</p>
+            </div>
+        </div>
+
+        <div class="producto" data-color="verde-claro">
+            <img src="https://via.placeholder.com/300x400/95d5b2/000000?text=Blusa+Clara" alt="Ropa Verde Claro">
+            <div class="info">
+                <h3>Blusa Primavera</h3>
+                <span class="tag" style="background: var(--verde-claro); color: #000">Verde Claro</span>
+                <p>$30.00</p>
+            </div>
+        </div>
+
+        <div class="producto" data-color="negro">
+            <img src="https://via.placeholder.com/300x400/1a1a1a/ffffff?text=Pantalon+Negro" alt="Ropa Negra">
+            <div class="info">
+                <h3>Pantalón Urbano</h3>
+                <span class="tag" style="background: var(--negro)">Negro</span>
+                <p>$40.00</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const botones = document.querySelectorAll('.btn-filtro');
+        const productos = document.querySelectorAll('.producto');
+
+        botones.forEach(boton => {
+            boton.addEventListener('click', () => {
+                const filtro = boton.getAttribute('data-color');
+                
+                productos.forEach(prod => {
+                    if (filtro === 'todos' || prod.getAttribute('data-color') === filtro) {
+                        prod.classList.remove('hidden');
+                    } else {
+                        prod.classList.add('hidden');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
