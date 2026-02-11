@@ -3,125 +3,123 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Catálogo de Ropa - Colores</title>
+    <title>Catálogo Pro - Varias Imágenes</title>
     <style>
         :root {
-            --rojo: #e63946;
-            --verde: #2d6a4f;
-            --verde-claro: #95d5b2;
-            --negro: #1a1a1a;
-            --blanco: #f8f9fa;
+            --rojo: #e63946; --verde: #2d6a4f;
+            --verde-claro: #95d5b2; --negro: #1a1a1a;
         }
 
-        body { font-family: 'Segoe UI', sans-serif; background-color: #eee; margin: 0; padding: 20px; }
-        
-        h1 { text-align: center; color: #333; }
+        body { font-family: 'Segoe UI', sans-serif; background: #f4f4f4; margin: 0; padding: 20px; }
+        h1 { text-align: center; }
 
-        /* Filtros */
-        .filtros { display: flex; justify-content: center; gap: 10px; margin-bottom: 30px; flex-wrap: wrap; }
-        
-        .btn-filtro {
-            padding: 10px 20px; border: none; border-radius: 25px; cursor: pointer;
-            transition: 0.3s; font-weight: bold; text-transform: uppercase;
-        }
+        .filtros { display: flex; justify-content: center; gap: 10px; margin-bottom: 30px; }
+        .btn-filtro { padding: 10px 15px; border: none; border-radius: 20px; cursor: pointer; font-weight: bold; }
 
-        .btn-filtro[data-color="todos"] { background: #ddd; }
-        .btn-filtro[data-color="rojo"] { background: var(--rojo); color: white; }
-        .btn-filtro[data-color="verde"] { background: var(--verde); color: white; }
-        .btn-filtro[data-color="verde-claro"] { background: var(--verde-claro); }
-        .btn-filtro[data-color="negro"] { background: var(--negro); color: white; }
-
-        /* Cuadrícula de Productos */
         .catalogo {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px; max-width: 1200px; margin: 0 auto;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px; max-width: 1100px; margin: 0 auto;
         }
 
+        /* Contenedor del Producto */
         .producto {
-            background: white; border-radius: 10px; overflow: hidden;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1); text-align: center;
-            padding-bottom: 15px; transition: transform 0.3s;
+            background: white; border-radius: 12px; overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1); position: relative;
         }
 
-        .producto:hover { transform: translateY(-5px); }
+        /* Slider de Imágenes */
+        .slider-container { position: relative; width: 100%; height: 350px; overflow: hidden; }
+        
+        .slider-container img {
+            width: 100%; height: 100%; object-fit: cover;
+            display: none; /* Ocultamos todas por defecto */
+        }
 
-        .producto img { width: 100%; height: 250px; object-fit: cover; background: #ccc; }
+        .slider-container img.active { display: block; }
 
-        .info h3 { margin: 15px 0 5px; color: #333; }
-        .tag { font-size: 0.8rem; padding: 3px 10px; border-radius: 10px; color: white; }
+        /* Botones del Slider */
+        .btn-nav {
+            position: absolute; top: 50%; transform: translateY(-50%);
+            background: rgba(255,255,255,0.7); border: none;
+            padding: 10px; cursor: pointer; border-radius: 50%; font-weight: bold;
+        }
+        .prev { left: 10px; }
+        .next { right: 10px; }
 
-        /* Clases para ocultar/mostrar */
+        .info { padding: 15px; text-align: center; }
         .hidden { display: none; }
     </style>
 </head>
 <body>
 
-    <h1>Mi Catálogo de Ropa</h1>
+    <h1>Catálogo de Ropa</h1>
 
     <div class="filtros">
-        <button class="btn-filtro" data-color="todos">Todos</button>
-        <button class="btn-filtro" data-color="rojo">Rojo</button>
-        <button class="btn-filtro" data-color="verde">Verde</button>
-        <button class="btn-filtro" data-color="verde-claro">Verde Claro</button>
-        <button class="btn-filtro" data-color="negro">Negro</button>
+        <button class="btn-filtro" onclick="filtrar('todos')">Todos</button>
+        <button class="btn-filtro" style="background:var(--rojo); color:white" onclick="filtrar('rojo')">Rojo</button>
+        <button class="btn-filtro" style="background:var(--verde); color:white" onclick="filtrar('verde')">Verde</button>
     </div>
 
-    <div class="catalogo" id="catalogo">
+    <div class="catalogo">
         <div class="producto" data-color="rojo">
-            <img src="https://via.placeholder.com/300x400/e63946/ffffff?text=Camiseta+Roja" alt="Ropa Roja">
+            <div class="slider-container">
+                <img src="tu-imagen-roja-1.jpg" class="active" alt="Vista 1">
+                <img src="tu-imagen-roja-2.jpg" alt="Vista 2">
+                <img src="tu-imagen-roja-3.jpg" alt="Vista 3">
+                
+                <button class="btn-nav prev" onclick="cambiarImagen(this, -1)">&#10094;</button>
+                <button class="btn-nav next" onclick="cambiarImagen(this, 1)">&#10095;</button>
+            </div>
             <div class="info">
-                <h3>Camiseta Essential</h3>
-                <span class="tag" style="background: var(--rojo)">Rojo</span>
-                <p>$25.00</p>
+                <h3>Camiseta Roja Premium</h3>
+                <p>$29.99</p>
             </div>
         </div>
 
         <div class="producto" data-color="verde">
-            <img src="https://via.placeholder.com/300x400/2d6a4f/ffffff?text=Chaqueta+Verde" alt="Ropa Verde">
-            <div class="info">
-                <h3>Chaqueta Outdoor</h3>
-                <span class="tag" style="background: var(--verde)">Verde</span>
-                <p>$45.00</p>
+            <div class="slider-container">
+                <img src="tu-imagen-verde-1.jpg" class="active" alt="Vista 1">
+                <img src="tu-imagen-verde-2.jpg" alt="Vista 2">
+                
+                <button class="btn-nav prev" onclick="cambiarImagen(this, -1)">&#10094;</button>
+                <button class="btn-nav next" onclick="cambiarImagen(this, 1)">&#10095;</button>
             </div>
-        </div>
-
-        <div class="producto" data-color="verde-claro">
-            <img src="https://via.placeholder.com/300x400/95d5b2/000000?text=Blusa+Clara" alt="Ropa Verde Claro">
             <div class="info">
-                <h3>Blusa Primavera</h3>
-                <span class="tag" style="background: var(--verde-claro); color: #000">Verde Claro</span>
-                <p>$30.00</p>
-            </div>
-        </div>
-
-        <div class="producto" data-color="negro">
-            <img src="https://via.placeholder.com/300x400/1a1a1a/ffffff?text=Pantalon+Negro" alt="Ropa Negra">
-            <div class="info">
-                <h3>Pantalón Urbano</h3>
-                <span class="tag" style="background: var(--negro)">Negro</span>
-                <p>$40.00</p>
+                <h3>Chaqueta Verde</h3>
+                <p>$55.00</p>
             </div>
         </div>
     </div>
 
     <script>
-        const botones = document.querySelectorAll('.btn-filtro');
-        const productos = document.querySelectorAll('.producto');
+        // Función para cambiar imágenes en el slider
+        function cambiarImagen(boton, direccion) {
+            const contenedor = boton.parentElement;
+            const imagenes = contenedor.querySelectorAll('img');
+            let indiceActivo = Array.from(imagenes).findIndex(img => img.classList.contains('active'));
 
-        botones.forEach(boton => {
-            boton.addEventListener('click', () => {
-                const filtro = boton.getAttribute('data-color');
-                
-                productos.forEach(prod => {
-                    if (filtro === 'todos' || prod.getAttribute('data-color') === filtro) {
-                        prod.classList.remove('hidden');
-                    } else {
-                        prod.classList.add('hidden');
-                    }
-                });
+            imagenes[indiceActivo].classList.remove('active');
+            
+            indiceActivo += direccion;
+
+            if (indiceActivo >= imagenes.length) indiceActivo = 0;
+            if (indiceActivo < 0) indiceActivo = imagenes.length - 1;
+
+            imagenes[indiceActivo].classList.add('active');
+        }
+
+        // Función de filtrado
+        function filtrar(color) {
+            const productos = document.querySelectorAll('.producto');
+            productos.forEach(p => {
+                if (color === 'todos' || p.getAttribute('data-color') === color) {
+                    p.classList.remove('hidden');
+                } else {
+                    p.classList.add('hidden');
+                }
             });
-        });
+        }
     </script>
 </body>
 </html>
