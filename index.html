@@ -3,90 +3,110 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Camaleonica Design</title>
+    <title>Chameleon Shop - Urban Boutique</title>
     
-    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Arial+Black&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Mrs+Saint+Delafield&display=swap" rel="stylesheet">
 
     <style>
         :root {
             --rojo: #d90429;
             --verde: #2dc653;
             --negro: #121212;
-            --off-white: #e0e0e0;
+            --off-white: #f4f4f4;
+            /* Si tienes el archivo eyesome.woff2, aquí se definiría la fuente real */
+            --font-script: 'Mrs+Saint+Delafield', cursive; 
         }
 
         body { 
-            font-family: 'Arial Black', sans-serif; 
+            font-family: 'Montserrat', sans-serif; 
             background-color: var(--off-white);
-            background-image: url('https://www.transparenttextures.com/patterns/p6.png'); /* Textura sutil */
+            background-image: url('https://www.transparenttextures.com/patterns/p6.png');
             margin: 0; padding: 20px; color: var(--negro);
         }
 
-        header { text-align: center; margin-bottom: 40px; }
+        header { text-align: center; margin-bottom: 50px; }
         
-        /* Logo Circular Estilo Parche */
         .logo-parche {
-            width: 150px; height: 150px;
+            width: 140px; height: 140px;
             border-radius: 50%;
-            border: 6px solid var(--negro);
-            box-shadow: 8px 8px 0px rgba(0,0,0,0.1);
-            margin-bottom: 10px;
+            border: 5px solid var(--negro);
+            box-shadow: 10px 10px 0px rgba(0,0,0,0.05);
+            margin-bottom: 15px;
         }
 
-        /* Título con Fuente Script */
+        /* Título con Estilo Eyesome Script */
         header h1 { 
-            font-family: 'Dancing Script', cursive; 
-            font-size: 4.5rem; 
-            color: var(--rojo);
-            margin: -15px 0 10px 0;
-            text-shadow: 3px 3px 0px var(--negro);
+            font-family: 'Mrs Saint Delafield', cursive; /* Sustituto visual de Eyesome */
+            font-size: 5.5rem; 
+            font-weight: 100;
+            color: var(--negro);
+            margin: -30px 0 10px 0;
+            line-height: 1;
         }
 
-        /* Filtros Urbanos */
-        .filtros { display: flex; justify-content: center; gap: 15px; margin-bottom: 40px; flex-wrap: wrap; }
+        /* Filtros Urbanos Minimalistas */
+        .filtros { display: flex; justify-content: center; gap: 10px; margin-bottom: 40px; }
         
         .btn-filtro {
-            padding: 12px 25px; border: 3px solid var(--negro);
-            background: white; cursor: pointer; font-weight: bold;
-            text-transform: uppercase; transition: 0.2s;
-            box-shadow: 4px 4px 0px var(--negro);
+            padding: 10px 20px; border: 2px solid var(--negro);
+            background: transparent; cursor: pointer; font-weight: 700;
+            text-transform: uppercase; letter-spacing: 1px;
+            transition: 0.3s;
         }
 
-        .btn-filtro:hover { transform: translate(-2px, -2px); box-shadow: 6px 6px 0px var(--verde); }
+        .btn-filtro:hover { background: var(--negro); color: white; }
 
         /* Grid de Productos */
         .catalogo {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px; max-width: 1200px; margin: 0 auto;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px; max-width: 1200px; margin: 0 auto;
         }
 
         .producto {
-            background: white; border: 4px solid var(--negro);
-            border-radius: 20px; overflow: hidden;
-            transition: 0.3s;
+            background: white; border: 1px solid #ddd;
+            border-radius: 5px; overflow: hidden;
+            transition: transform 0.4s ease;
         }
 
-        /* Galería / Slider */
-        .slider-container { position: relative; width: 100%; height: 350px; background: #eee; border-bottom: 4px solid var(--negro); }
+        .producto:hover { transform: translateY(-10px); }
+
+        /* Galería Interactiva */
+        .slider-container { position: relative; width: 100%; height: 400px; background: #fff; }
         .slider-container img { width: 100%; height: 100%; object-fit: cover; display: none; }
         .slider-container img.active { display: block; }
 
         .btn-nav {
             position: absolute; top: 50%; transform: translateY(-50%);
-            background: var(--negro); color: white; border: none;
-            padding: 12px; cursor: pointer; font-size: 1.2rem; z-index: 10;
+            background: rgba(255,255,255,0.8); border: none;
+            width: 40px; height: 40px; cursor: pointer; border-radius: 50%;
+            font-size: 1rem; transition: 0.3s;
         }
-        .prev { left: 0; border-radius: 0 10px 10px 0; }
-        .next { right: 0; border-radius: 10px 0 0 10px; }
+        .btn-nav:hover { background: var(--negro); color: white; }
+        .prev { left: 10px; }
+        .next { right: 10px; }
 
-        /* Info del producto */
-        .info { padding: 20px; text-align: center; }
+        /* Info del producto con toque Eyesome */
+        .info { padding: 25px; text-align: left; }
         .info h3 { 
-            margin: 0; font-family: 'Dancing Script', cursive; 
-            font-size: 2rem; color: var(--negro);
+            margin: 0; font-family: 'Mrs Saint Delafield', cursive; 
+            font-size: 2.8rem; font-weight: 100;
+            color: var(--negro);
         }
-        .precio { color: var(--rojo); font-size: 1.8rem; margin: 10px 0; }
+        .precio { 
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 400; font-size: 1.2rem; 
+            margin-top: -10px; letter-spacing: 2px;
+        }
+
+        .btn-whatsapp {
+            display: block; width: 100%; padding: 12px; background: var(--negro);
+            color: white; text-decoration: none; text-align: center;
+            margin-top: 15px; font-weight: 700; font-size: 0.8rem;
+            text-transform: uppercase; letter-spacing: 2px;
+        }
 
         .hidden { display: none; }
     </style>
@@ -94,76 +114,60 @@
 <body>
 
     <header>
-        <img src="logo_camaleonica.png" alt="Logo Camaleón" class="logo-parche">
-        <h1>Camaleonica Design</h1>
+        <img src="logo_camaleon.png" alt="Logo" class="logo-parche">
+        <h1>Chameleon</h1>
     </header>
 
     <div class="filtros">
-        <button class="btn-filtro" onclick="filtrar('todos')">Todos</button>
-        <button class="btn-filtro" onclick="filtrar('rojo')">Mujer</button>
-        <button class="btn-filtro" onclick="filtrar('verde')">Hombre</button>
-        <button class="btn-filtro" onclick="filtrar('negro')">Accesorios</button>
+        <button class="btn-filtro" onclick="filtrar('todos')">All</button>
+        <button class="btn-filtro" onclick="filtrar('rojo')">Red</button>
+        <button class="btn-filtro" onclick="filtrar('verde')">Green</button>
+        <button class="btn-filtro" onclick="filtrar('negro')">Black</button>
     </div>
 
-    <div class="catalogo" id="catalogo">
-        
+    <div class="catalogo">
         <div class="producto" data-color="rojo">
             <div class="slider-container">
-                <img src="camiseta-roja-1.jpg" class="active">
-                <img src="camiseta-roja-2.jpg">
-                <img src="camiseta-roja-3.jpg">
-                
+                <img src="rojo-frente.jpg" class="active">
+                <img src="rojo-detalle.jpg">
                 <button class="btn-nav prev" onclick="cambiarImagen(this, -1)">&#10094;</button>
                 <button class="btn-nav next" onclick="cambiarImagen(this, 1)">&#10095;</button>
             </div>
             <div class="info">
-                <h3>Camiseta Urban Red</h3>
-                <div class="precio">$25.00</div>
+                <h3>Urban Tee</h3>
+                <div class="precio">$35.00</div>
+                <a href="#" class="btn-whatsapp">Shop Now</a>
             </div>
         </div>
 
         <div class="producto" data-color="verde">
             <div class="slider-container">
-                <img src="chaqueta-verde-1.jpg" class="active">
-                <img src="chaqueta-verde-2.jpg">
-                
+                <img src="verde-1.jpg" class="active">
+                <img src="verde-2.jpg">
                 <button class="btn-nav prev" onclick="cambiarImagen(this, -1)">&#10094;</button>
                 <button class="btn-nav next" onclick="cambiarImagen(this, 1)">&#10095;</button>
             </div>
             <div class="info">
-                <h3>Chaqueta Camo</h3>
-                <div class="precio">$45.00</div>
+                <h3>Jungle Jacket</h3>
+                <div class="precio">$75.00</div>
+                <a href="#" class="btn-whatsapp">Shop Now</a>
             </div>
         </div>
-
     </div>
 
     <script>
-        // Lógica de la Galería (Slider)
         function cambiarImagen(boton, direccion) {
             const contenedor = boton.parentElement;
             const imagenes = contenedor.querySelectorAll('img');
-            let indexActual = Array.from(imagenes).findIndex(img => img.classList.contains('active'));
-
-            imagenes[indexActual].classList.remove('active');
-            
-            indexActual += direccion;
-
-            if (indexActual >= imagenes.length) indexActual = 0;
-            if (indexActual < 0) indexActual = imagenes.length - 1;
-
-            imagenes[indexActual].classList.add('active');
+            let index = Array.from(imagenes).findIndex(img => img.classList.contains('active'));
+            imagenes[index].classList.remove('active');
+            index = (index + direccion + imagenes.length) % imagenes.length;
+            imagenes[index].classList.add('active');
         }
 
-        // Lógica de Filtros
         function filtrar(color) {
-            const productos = document.querySelectorAll('.producto');
-            productos.forEach(p => {
-                if (color === 'todos' || p.getAttribute('data-color') === color) {
-                    p.classList.remove('hidden');
-                } else {
-                    p.classList.add('hidden');
-                }
+            document.querySelectorAll('.producto').forEach(p => {
+                p.classList.toggle('hidden', color !== 'todos' && p.dataset.color !== color);
             });
         }
     </script>
