@@ -9,80 +9,92 @@
 
     <style>
         :root {
-            --rojo-chameleon: #d90429;
-            --verde-chameleon: #2dc653;
-            --negro-urban: #121212;
+            --rojo: #d90429;
+            --verde: #2dc653;
+            --negro: #121212;
             --off-white: #e0e0e0;
         }
 
         body { 
             font-family: 'Arial Black', sans-serif; 
             background-color: var(--off-white);
-            background-image: url('https://www.transparenttextures.com/patterns/p6.png');
-            margin: 0; padding: 20px; color: var(--negro-urban);
+            background-image: url('https://www.transparenttextures.com/patterns/p6.png'); /* Textura sutil */
+            margin: 0; padding: 20px; color: var(--negro);
         }
 
         header { text-align: center; margin-bottom: 40px; }
         
-        /* Aplicamos la nueva fuente al título principal */
+        /* Logo Circular Estilo Parche */
+        .logo-parche {
+            width: 150px; height: 150px;
+            border-radius: 50%;
+            border: 6px solid var(--negro);
+            box-shadow: 8px 8px 0px rgba(0,0,0,0.1);
+            margin-bottom: 10px;
+        }
+
+        /* Título con Fuente Script */
         header h1 { 
             font-family: 'Dancing Script', cursive; 
             font-size: 4.5rem; 
-            color: var(--rojo-chameleon);
-            margin: -20px 0 10px 0;
-            text-shadow: 3px 3px 0px var(--negro-urban);
+            color: var(--rojo);
+            margin: -15px 0 10px 0;
+            text-shadow: 3px 3px 0px var(--negro);
         }
 
-        .logo-parche {
-            width: 160px; height: 160px;
-            border-radius: 50%;
-            border: 6px solid var(--negro-urban);
-            box-shadow: 8px 8px 0px rgba(0,0,0,0.15);
-            object-fit: cover;
-        }
-
-        /* Botones de filtro */
-        .filtros { display: flex; justify-content: center; gap: 15px; margin-bottom: 40px; }
+        /* Filtros Urbanos */
+        .filtros { display: flex; justify-content: center; gap: 15px; margin-bottom: 40px; flex-wrap: wrap; }
+        
         .btn-filtro {
-            padding: 12px 25px; border: 3px solid var(--negro-urban);
-            background: white; cursor: pointer; font-family: 'Arial Black', sans-serif;
-            text-transform: uppercase; box-shadow: 4px 4px 0px var(--negro-urban);
+            padding: 12px 25px; border: 3px solid var(--negro);
+            background: white; cursor: pointer; font-weight: bold;
+            text-transform: uppercase; transition: 0.2s;
+            box-shadow: 4px 4px 0px var(--negro);
         }
 
-        .btn-filtro:hover { background: var(--verde-chameleon); color: white; transform: scale(1.05); }
+        .btn-filtro:hover { transform: translate(-2px, -2px); box-shadow: 6px 6px 0px var(--verde); }
 
-        /* Tarjetas de Producto */
+        /* Grid de Productos */
         .catalogo {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 25px; max-width: 1100px; margin: 0 auto;
+            gap: 30px; max-width: 1200px; margin: 0 auto;
         }
 
         .producto {
-            background: white; border: 4px solid var(--negro-urban);
-            border-radius: 15px; overflow: hidden;
-            box-shadow: 10px 10px 0px rgba(0,0,0,0.05);
+            background: white; border: 4px solid var(--negro);
+            border-radius: 20px; overflow: hidden;
+            transition: 0.3s;
         }
 
-        .slider-container { position: relative; height: 300px; background: #f0f0f0; }
+        /* Galería / Slider */
+        .slider-container { position: relative; width: 100%; height: 350px; background: #eee; border-bottom: 4px solid var(--negro); }
         .slider-container img { width: 100%; height: 100%; object-fit: cover; display: none; }
         .slider-container img.active { display: block; }
 
-        .info { padding: 15px; }
-        .info h3 { 
-            margin: 0; 
-            font-family: 'Dancing Script', cursive; /* Fuente script también en nombres de productos */
-            font-size: 1.8rem; 
+        .btn-nav {
+            position: absolute; top: 50%; transform: translateY(-50%);
+            background: var(--negro); color: white; border: none;
+            padding: 12px; cursor: pointer; font-size: 1.2rem; z-index: 10;
         }
+        .prev { left: 0; border-radius: 0 10px 10px 0; }
+        .next { right: 0; border-radius: 10px 0 0 10px; }
 
-        .precio { font-size: 1.5rem; color: var(--rojo-chameleon); margin: 5px 0; }
+        /* Info del producto */
+        .info { padding: 20px; text-align: center; }
+        .info h3 { 
+            margin: 0; font-family: 'Dancing Script', cursive; 
+            font-size: 2rem; color: var(--negro);
+        }
+        .precio { color: var(--rojo); font-size: 1.8rem; margin: 10px 0; }
+
         .hidden { display: none; }
     </style>
 </head>
 <body>
 
     <header>
-        <img src="logo_camaleon.png" alt="Logo" class="logo-parche">
+        <img src="logo_camaleon.png" alt="Logo Camaleón" class="logo-parche">
         <h1>Chameleon Shop</h1>
     </header>
 
@@ -90,25 +102,68 @@
         <button class="btn-filtro" onclick="filtrar('todos')">Todos</button>
         <button class="btn-filtro" onclick="filtrar('rojo')">Rojo</button>
         <button class="btn-filtro" onclick="filtrar('verde')">Verde</button>
+        <button class="btn-filtro" onclick="filtrar('negro')">Negro</button>
     </div>
 
-    <div class="catalogo">
+    <div class="catalogo" id="catalogo">
+        
         <div class="producto" data-color="rojo">
             <div class="slider-container">
-                <img src="prenda_roja_1.png" class="active">
-                <img src="prenda_roja_2.png">
+                <img src="camiseta-roja-1.jpg" class="active">
+                <img src="camiseta-roja-2.jpg">
+                <img src="camiseta-roja-3.jpg">
+                
+                <button class="btn-nav prev" onclick="cambiarImagen(this, -1)">&#10094;</button>
+                <button class="btn-nav next" onclick="cambiarImagen(this, 1)">&#10095;</button>
             </div>
             <div class="info">
-                <h3>Camiseta Flow</h3>
-                <div class="precio">$30.00</div>
+                <h3>Camiseta Urban Red</h3>
+                <div class="precio">$25.00</div>
             </div>
         </div>
+
+        <div class="producto" data-color="verde">
+            <div class="slider-container">
+                <img src="chaqueta-verde-1.jpg" class="active">
+                <img src="chaqueta-verde-2.jpg">
+                
+                <button class="btn-nav prev" onclick="cambiarImagen(this, -1)">&#10094;</button>
+                <button class="btn-nav next" onclick="cambiarImagen(this, 1)">&#10095;</button>
+            </div>
+            <div class="info">
+                <h3>Chaqueta Camo</h3>
+                <div class="precio">$45.00</div>
+            </div>
         </div>
 
+    </div>
+
     <script>
+        // Lógica de la Galería (Slider)
+        function cambiarImagen(boton, direccion) {
+            const contenedor = boton.parentElement;
+            const imagenes = contenedor.querySelectorAll('img');
+            let indexActual = Array.from(imagenes).findIndex(img => img.classList.contains('active'));
+
+            imagenes[indexActual].classList.remove('active');
+            
+            indexActual += direccion;
+
+            if (indexActual >= imagenes.length) indexActual = 0;
+            if (indexActual < 0) indexActual = imagenes.length - 1;
+
+            imagenes[indexActual].classList.add('active');
+        }
+
+        // Lógica de Filtros
         function filtrar(color) {
-            document.querySelectorAll('.producto').forEach(p => {
-                p.classList.toggle('hidden', color !== 'todos' && p.dataset.color !== color);
+            const productos = document.querySelectorAll('.producto');
+            productos.forEach(p => {
+                if (color === 'todos' || p.getAttribute('data-color') === color) {
+                    p.classList.remove('hidden');
+                } else {
+                    p.classList.add('hidden');
+                }
             });
         }
     </script>
