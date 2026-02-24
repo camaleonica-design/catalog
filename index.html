@@ -3,121 +3,146 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Camaleonica-design-catalogo</title>
+    <title>Urban Style - Chameleon Catalog</title>
     <style>
         :root {
-            --rojo: #e63946; --verde: #2d6a4f;
-            --verde-claro: #95d5b2; --negro: #1a1a1a;
+            /* Colores basados en tu imagen */
+            --rojo-chameleon: #d90429;
+            --verde-chameleon: #2dc653;
+            --verde-claro: #9ef01a;
+            --negro-urban: #121212;
+            --off-white: #e0e0e0;
         }
 
-        body { font-family: 'Segoe UI', sans-serif; background: #f4f4f4; margin: 0; padding: 20px; }
-        h1 { text-align: center; }
+        body { 
+            font-family: 'Arial Black', sans-serif; 
+            background-color: var(--off-white);
+            /* Textura de fondo sutil tipo papel/pared */
+            background-image: url('https://www.transparenttextures.com/patterns/p6.png');
+            margin: 0; padding: 20px; color: var(--negro-urban);
+        }
 
-        .filtros { display: flex; justify-content: center; gap: 10px; margin-bottom: 30px; }
-        .btn-filtro { padding: 10px 15px; border: none; border-radius: 20px; cursor: pointer; font-weight: bold; }
+        header { text-align: center; margin-bottom: 40px; }
+        
+        /* Logo Circular Estilo Parche */
+        .logo-parche {
+            width: 150px; height: 150px;
+            border-radius: 50%;
+            border: 8px solid var(--negro-urban);
+            box-shadow: 5px 5px 0px var(--rojo-chameleon);
+            margin-bottom: 10px;
+        }
 
+        h1 { text-transform: uppercase; letter-spacing: -2px; font-size: 3rem; margin: 0; }
+
+        /* Filtros Urbanos */
+        .filtros { display: flex; justify-content: center; gap: 15px; margin-bottom: 40px; flex-wrap: wrap; }
+        
+        .btn-filtro {
+            padding: 12px 25px; border: 3px solid var(--negro-urban);
+            background: white; cursor: pointer; font-weight: bold;
+            text-transform: uppercase; transition: 0.2s;
+            box-shadow: 4px 4px 0px var(--negro-urban);
+        }
+
+        .btn-filtro:hover { transform: translate(-2px, -2px); box-shadow: 6px 6px 0px var(--rojo-chameleon); }
+        .btn-filtro:active { transform: translate(2px, 2px); box-shadow: 0px 0px 0px; }
+
+        /* Grid de Productos */
         .catalogo {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 25px; max-width: 1100px; margin: 0 auto;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px; max-width: 1200px; margin: 0 auto;
         }
 
-        /* Contenedor del Producto */
         .producto {
-            background: white; border-radius: 12px; overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1); position: relative;
+            background: white; border: 4px solid var(--negro-urban);
+            border-radius: 20px; overflow: hidden;
+            transition: 0.3s; position: relative;
         }
 
-        /* Slider de Imágenes */
-        .slider-container { position: relative; width: 100%; height: 350px; overflow: hidden; }
-        
-        .slider-container img {
-            width: 100%; height: 100%; object-fit: cover;
-            display: none; /* Ocultamos todas por defecto */
-        }
+        .producto:hover { transform: rotate(-1deg) scale(1.02); }
 
+        /* Slider */
+        .slider-container { position: relative; width: 100%; height: 350px; background: #ccc; border-bottom: 4px solid var(--negro-urban); }
+        .slider-container img { width: 100%; height: 100%; object-fit: cover; display: none; }
         .slider-container img.active { display: block; }
 
-        /* Botones del Slider */
         .btn-nav {
-            position: absolute; top: 50%; transform: translateY(-50%);
-            background: rgba(255,255,255,0.7); border: none;
-            padding: 10px; cursor: pointer; border-radius: 50%; font-weight: bold;
+            position: absolute; top: 50%; background: var(--negro-urban);
+            color: white; border: none; padding: 10px 15px; cursor: pointer; font-size: 1.2rem;
         }
-        .prev { left: 10px; }
-        .next { right: 10px; }
+        .prev { left: 0; border-radius: 0 10px 10px 0; }
+        .next { right: 0; border-radius: 10px 0 0 10px; }
 
-        .info { padding: 15px; text-align: center; }
+        .info { padding: 20px; }
+        .info h3 { margin: 0; text-transform: uppercase; font-size: 1.5rem; }
+        .precio { color: var(--rojo-chameleon); font-size: 1.8rem; margin: 10px 0; }
+
+        .tag-color {
+            display: inline-block; padding: 5px 15px; border-radius: 5px;
+            color: white; font-size: 0.8rem; border: 2px solid var(--negro-urban);
+        }
+
         .hidden { display: none; }
     </style>
 </head>
 <body>
 
-    <h1>Camaleonica design</h1>
+    <header>
+        <img src="shared_image.jpg" alt="Logo Camaleón" class="logo-parche">
+        <h1>Chameleon Shop</h1>
+    </header>
 
     <div class="filtros">
         <button class="btn-filtro" onclick="filtrar('todos')">Todos</button>
-        <button class="btn-filtro" style="background:var(--rojo); color:white" onclick="filtrar('rojo')">Rojo</button>
-        <button class="btn-filtro" style="background:var(--verde); color:white" onclick="filtrar('verde')">Verde</button>
+        <button class="btn-filtro" style="border-color: var(--rojo-chameleon)" onclick="filtrar('rojo')">Rojo</button>
+        <button class="btn-filtro" style="border-color: var(--verde-chameleon)" onclick="filtrar('verde')">Verde</button>
+        <button class="btn-filtro" style="border-color: var(--negro-urban)" onclick="filtrar('negro')">Negro</button>
     </div>
 
     <div class="catalogo">
         <div class="producto" data-color="rojo">
             <div class="slider-container">
-                <img src="camiseta roja.png" class="active" alt="Vista 1">
-                <img src="camiseta roja.png" alt="Vista 2">
-                <img src="pantalon negro.png" alt="Vista 3">
-                
+                <img src="camiseta-roja-1.jpg" class="active">
+                <img src="camiseta-roja-2.jpg">
                 <button class="btn-nav prev" onclick="cambiarImagen(this, -1)">&#10094;</button>
                 <button class="btn-nav next" onclick="cambiarImagen(this, 1)">&#10095;</button>
             </div>
             <div class="info">
-                <h3>Camiseta Roja </h3>
-                <p>$29.99</p>
+                <h3>Camiseta Crimson</h3>
+                <div class="precio">$35.00</div>
+                <span class="tag-color" style="background: var(--rojo-chameleon)">ROJO</span>
             </div>
         </div>
 
         <div class="producto" data-color="verde">
             <div class="slider-container">
-                <img src="pantalon negro.png" class="active" alt="Vista 1">
-                <img src="camiseta roja.png" alt="Vista 2">
-                
+                <img src="chaqueta-verde.jpg" class="active">
                 <button class="btn-nav prev" onclick="cambiarImagen(this, -1)">&#10094;</button>
                 <button class="btn-nav next" onclick="cambiarImagen(this, 1)">&#10095;</button>
             </div>
             <div class="info">
-                <h3>Chaqueta Verde</h3>
-                <p>$55.00</p>
+                <h3>Chaqueta Jungle</h3>
+                <div class="precio">$89.00</div>
+                <span class="tag-color" style="background: var(--verde-chameleon)">VERDE</span>
             </div>
         </div>
     </div>
 
     <script>
-        // Función para cambiar imágenes en el slider
         function cambiarImagen(boton, direccion) {
             const contenedor = boton.parentElement;
             const imagenes = contenedor.querySelectorAll('img');
-            let indiceActivo = Array.from(imagenes).findIndex(img => img.classList.contains('active'));
-
-            imagenes[indiceActivo].classList.remove('active');
-            
-            indiceActivo += direccion;
-
-            if (indiceActivo >= imagenes.length) indiceActivo = 0;
-            if (indiceActivo < 0) indiceActivo = imagenes.length - 1;
-
-            imagenes[indiceActivo].classList.add('active');
+            let index = Array.from(imagenes).findIndex(img => img.classList.contains('active'));
+            imagenes[index].classList.remove('active');
+            index = (index + direccion + imagenes.length) % imagenes.length;
+            imagenes[index].classList.add('active');
         }
 
-        // Función de filtrado
         function filtrar(color) {
-            const productos = document.querySelectorAll('.producto');
-            productos.forEach(p => {
-                if (color === 'todos' || p.getAttribute('data-color') === color) {
-                    p.classList.remove('hidden');
-                } else {
-                    p.classList.add('hidden');
-                }
+            document.querySelectorAll('.producto').forEach(p => {
+                p.classList.toggle('hidden', color !== 'todos' && p.dataset.color !== color);
             });
         }
     </script>
