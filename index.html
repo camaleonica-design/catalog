@@ -5,110 +5,141 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Camaleonica Design</title>
     
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
-    
-    <link href="https://fonts.googleapis.com/css2?family=Mrs+Saint+Delafield&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Mrs+Saint+Delafield&display=swap" rel="stylesheet">
 
     <style>
         :root {
             --rojo: #d90429;
             --verde: #2dc653;
             --negro: #121212;
-            --off-white: #f4f4f4;
-            /* Si tienes el archivo eyesome.woff2, aquí se definiría la fuente real */
-            --font-script: 'Mrs+Saint+Delafield', cursive; 
+            --blanco: #ffffff;
+            --font-script: 'Mrs Saint Delafield', cursive;
         }
+
+        * { box-sizing: border-box; }
 
         body { 
             font-family: 'Montserrat', sans-serif; 
-            background-color: var(--off-white);
+            background-color: var(--rojo); /* Fondo Rojo */
             background-image: url('https://www.transparenttextures.com/patterns/p6.png');
-            margin: 0; padding: 20px; color: var(--negro);
+            margin: 0; padding: 20px; 
+            color: var(--blanco); /* Letras Blancas */
+            line-height: 1.6;
         }
 
-        header { text-align: center; margin-bottom: 50px; }
+        header { text-align: center; margin-bottom: 40px; padding-top: 20px; }
         
         .logo-parche {
-            width: 140px; height: 140px;
+            width: 120px; height: 120px;
             border-radius: 50%;
-            border: 5px solid var(--negro);
-            box-shadow: 10px 10px 0px rgba(0,0,0,0.05);
-            margin-bottom: 15px;
+            border: 4px solid var(--blanco); /* Borde blanco para el logo */
+            box-shadow: 0px 10px 20px rgba(0,0,0,0.2);
+            margin-bottom: 10px;
+            object-fit: cover;
         }
 
-        /* Título con Estilo Eyesome Script */
         header h1 { 
-            font-family: 'Mrs Saint Delafield', cursive; /* Sustituto visual de Eyesome */
-            font-size: 5.5rem; 
+            font-family: var(--font-script);
+            font-size: 5rem; 
             font-weight: 100;
-            color: var(--negro);
-            margin: -30px 0 10px 0;
+            color: var(--blanco);
+            margin: -25px 0 0 0;
             line-height: 1;
         }
 
-        /* Filtros Urbanos Minimalistas */
-        .filtros { display: flex; justify-content: center; gap: 10px; margin-bottom: 40px; }
+        /* --- FILTROS RESPONSIVE --- */
+        .filtros { 
+            display: flex; 
+            justify-content: center; 
+            gap: 10px; 
+            margin-bottom: 40px; 
+            flex-wrap: wrap; 
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
         
         .btn-filtro {
-            padding: 10px 20px; border: 2px solid var(--negro);
-            background: transparent; cursor: pointer; font-weight: 700;
-            text-transform: uppercase; letter-spacing: 1px;
-            transition: 0.3s;
+            flex: 1 1 auto;
+            min-width: 100px;
+            padding: 12px 15px; 
+            border: 2px solid var(--blanco);
+            background: transparent; 
+            color: var(--blanco);
+            cursor: pointer; 
+            font-weight: 700;
+            text-transform: uppercase; 
+            font-size: 0.7rem;
+            letter-spacing: 2px;
+            transition: all 0.3s ease;
         }
 
-        .btn-filtro:hover { background: var(--negro); color: white; }
+        .btn-filtro:hover { background: var(--blanco); color: var(--rojo); }
 
-        /* Grid de Productos */
+        /* --- CATÁLOGO --- */
         .catalogo {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 40px; max-width: 1200px; margin: 0 auto;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px; max-width: 1200px; margin: 0 auto;
         }
 
         .producto {
-            background: white; border: 1px solid #ddd;
-            border-radius: 5px; overflow: hidden;
-            transition: transform 0.4s ease;
+            background: var(--blanco); /* Fondo de tarjeta blanco para que resalte la ropa */
+            border: none;
+            border-radius: 12px; 
+            overflow: hidden;
+            transition: transform 0.3s ease;
+            display: flex; flex-direction: column;
+            color: var(--negro); /* Texto interno en negro para legibilidad */
         }
 
-        .producto:hover { transform: translateY(-10px); }
+        .producto:hover { transform: translateY(-5px); box-shadow: 0 15px 30px rgba(0,0,0,0.3); }
 
-        /* Galería Interactiva */
-        .slider-container { position: relative; width: 100%; height: 400px; background: #fff; }
+        /* Galería / Slider */
+        .slider-container { position: relative; width: 100%; height: 380px; background: #eee; }
         .slider-container img { width: 100%; height: 100%; object-fit: cover; display: none; }
         .slider-container img.active { display: block; }
 
         .btn-nav {
             position: absolute; top: 50%; transform: translateY(-50%);
-            background: rgba(255,255,255,0.8); border: none;
-            width: 40px; height: 40px; cursor: pointer; border-radius: 50%;
-            font-size: 1rem; transition: 0.3s;
+            background: rgba(255,255,255,0.9); border: none;
+            width: 35px; height: 35px; cursor: pointer; border-radius: 50%;
+            font-size: 1rem; z-index: 5; display: flex; align-items: center; justify-content: center;
+            color: var(--negro);
         }
-        .btn-nav:hover { background: var(--negro); color: white; }
         .prev { left: 10px; }
         .next { right: 10px; }
 
-        /* Info del producto con toque Eyesome */
-        .info { padding: 25px; text-align: left; }
+        /* Info del producto */
+        .info { padding: 20px; text-align: left; flex-grow: 1; }
         .info h3 { 
-            margin: 0; font-family: 'Mrs Saint Delafield', cursive; 
-            font-size: 2.8rem; font-weight: 100;
+            margin: 0; font-family: var(--font-script); 
+            font-size: 2.8rem; font-weight: 100; line-height: 0.8;
             color: var(--negro);
         }
-        .precio { 
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 400; font-size: 1.2rem; 
-            margin-top: -10px; letter-spacing: 2px;
-        }
+        .precio { font-size: 1.1rem; margin: 10px 0; letter-spacing: 1px; color: var(--rojo); font-weight: 700; }
 
         .btn-whatsapp {
-            display: block; width: 100%; padding: 12px; background: var(--negro);
-            color: white; text-decoration: none; text-align: center;
-            margin-top: 15px; font-weight: 700; font-size: 0.8rem;
+            display: block; width: 100%; padding: 15px; background: var(--negro);
+            color: var(--blanco); text-decoration: none; text-align: center;
+            font-weight: 700; font-size: 0.75rem;
             text-transform: uppercase; letter-spacing: 2px;
+            transition: background 0.3s;
         }
+        .btn-whatsapp:hover { background: #333; }
 
         .hidden { display: none; }
+
+        /* --- MEDIA QUERIES (Móvil) --- */
+        @media (max-width: 480px) {
+            header h1 { font-size: 3.8rem; }
+            .filtros {
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .slider-container { height: 320px; }
+            .info h3 { font-size: 2.2rem; }
+        }
 
 /* Estilos del Botón Flotante */
 .whatsapp-float {
@@ -190,9 +221,9 @@
                 <button class="btn-nav next" onclick="cambiarImagen(this, 1)">&#10095;</button>
             </div>
             <div class="info">
-                <h3>Urban Tee</h3>
+                <h3>Urban Crimson</h3>
                 <div class="precio">$35.00</div>
-                <a href="#" class="btn-whatsapp">Shop Now</a>
+                <a href="https://wa.me/tu_numero" class="btn-whatsapp">Comprar</a>
             </div>
         </div>
 
@@ -204,9 +235,9 @@
                 <button class="btn-nav next" onclick="cambiarImagen(this, 1)">&#10095;</button>
             </div>
             <div class="info">
-                <h3>Jungle Jacket</h3>
-                <div class="precio">$75.00</div>
-                <a href="#" class="btn-whatsapp">Shop Now</a>
+                <h3>Forest Jacket</h3>
+                <div class="precio">$70.00</div>
+                <a href="https://wa.me/tu_numero" class="btn-whatsapp">Comprar</a>
             </div>
         </div>
     </div>
@@ -216,14 +247,20 @@
             const contenedor = boton.parentElement;
             const imagenes = contenedor.querySelectorAll('img');
             let index = Array.from(imagenes).findIndex(img => img.classList.contains('active'));
+            
             imagenes[index].classList.remove('active');
             index = (index + direccion + imagenes.length) % imagenes.length;
             imagenes[index].classList.add('active');
         }
 
         function filtrar(color) {
-            document.querySelectorAll('.producto').forEach(p => {
-                p.classList.toggle('hidden', color !== 'todos' && p.dataset.color !== color);
+            const productos = document.querySelectorAll('.producto');
+            productos.forEach(p => {
+                if (color === 'todos' || p.getAttribute('data-color') === color) {
+                    p.classList.remove('hidden');
+                } else {
+                    p.classList.add('hidden');
+                }
             });
         }
     </script>
