@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Camaleonica Design</title>
+    <title>Camaleonica Design | Black Edition</title>
     
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Mrs+Saint+Delafield&display=swap" rel="stylesheet">
 
@@ -11,7 +11,8 @@
         :root {
             --rojo: #d90429;
             --verde: #2dc653;
-            --negro: #121212;
+            --negro-fondo: #0a0a0a; /* Negro más profundo */
+            --negro-tarjeta: #1a1a1a; /* Negro para las tarjetas */
             --blanco: #ffffff;
             --font-script: 'Mrs Saint Delafield', cursive;
         }
@@ -20,8 +21,8 @@
 
         body { 
             font-family: 'Montserrat', sans-serif; 
-            background-color: var(--rojo); /* Fondo Rojo */
-            background-image: url('https://www.transparenttextures.com/patterns/p6.png');
+            background-color: var(--negro-fondo); /* Fondo Negro */
+            background-image: url('https://www.transparenttextures.com/patterns/p6.png'); /* Textura sutil */
             margin: 0; padding: 20px; 
             color: var(--blanco); /* Letras Blancas */
             line-height: 1.6;
@@ -32,8 +33,8 @@
         .logo-parche {
             width: 120px; height: 120px;
             border-radius: 50%;
-            border: 4px solid var(--blanco); /* Borde blanco para el logo */
-            box-shadow: 0px 10px 20px rgba(0,0,0,0.2);
+            border: 3px solid var(--blanco);
+            box-shadow: 0px 5px 15px rgba(255,255,255,0.1);
             margin-bottom: 10px;
             object-fit: cover;
         }
@@ -63,7 +64,7 @@
             flex: 1 1 auto;
             min-width: 100px;
             padding: 12px 15px; 
-            border: 2px solid var(--blanco);
+            border: 1px solid var(--blanco);
             background: transparent; 
             color: var(--blanco);
             cursor: pointer; 
@@ -74,7 +75,7 @@
             transition: all 0.3s ease;
         }
 
-        .btn-filtro:hover { background: var(--blanco); color: var(--rojo); }
+        .btn-filtro:hover { background: var(--blanco); color: var(--negro-fondo); }
 
         /* --- CATÁLOGO --- */
         .catalogo {
@@ -84,29 +85,34 @@
         }
 
         .producto {
-            background: var(--blanco); /* Fondo de tarjeta blanco para que resalte la ropa */
-            border: none;
+            background: var(--negro-tarjeta); /* Tarjeta oscura */
+            border: 1px solid #333;
             border-radius: 12px; 
             overflow: hidden;
             transition: transform 0.3s ease;
             display: flex; flex-direction: column;
-            color: var(--negro); /* Texto interno en negro para legibilidad */
         }
 
-        .producto:hover { transform: translateY(-5px); box-shadow: 0 15px 30px rgba(0,0,0,0.3); }
+        .producto:hover { 
+            transform: translateY(-5px); 
+            box-shadow: 0 10px 30px rgba(255,255,255,0.05);
+            border-color: var(--rojo);
+        }
 
         /* Galería / Slider */
-        .slider-container { position: relative; width: 100%; height: 380px; background: #eee; }
+        .slider-container { position: relative; width: 100%; height: 380px; background: #222; }
         .slider-container img { width: 100%; height: 100%; object-fit: cover; display: none; }
         .slider-container img.active { display: block; }
 
         .btn-nav {
             position: absolute; top: 50%; transform: translateY(-50%);
-            background: rgba(255,255,255,0.9); border: none;
+            background: rgba(0,0,0,0.6); 
+            color: white;
+            border: 1px solid rgba(255,255,255,0.3);
             width: 35px; height: 35px; cursor: pointer; border-radius: 50%;
             font-size: 1rem; z-index: 5; display: flex; align-items: center; justify-content: center;
-            color: var(--negro);
         }
+        .btn-nav:hover { background: var(--rojo); }
         .prev { left: 10px; }
         .next { right: 10px; }
 
@@ -115,22 +121,22 @@
         .info h3 { 
             margin: 0; font-family: var(--font-script); 
             font-size: 2.8rem; font-weight: 100; line-height: 0.8;
-            color: var(--negro);
+            color: var(--blanco);
         }
-        .precio { font-size: 1.1rem; margin: 10px 0; letter-spacing: 1px; color: var(--rojo); font-weight: 700; }
+        .precio { font-size: 1.2rem; margin: 10px 0; letter-spacing: 1px; color: var(--rojo); font-weight: 700; }
 
         .btn-whatsapp {
-            display: block; width: 100%; padding: 15px; background: var(--negro);
-            color: var(--blanco); text-decoration: none; text-align: center;
+            display: block; width: 100%; padding: 15px; background: var(--blanco);
+            color: var(--negro-fondo); text-decoration: none; text-align: center;
             font-weight: 700; font-size: 0.75rem;
             text-transform: uppercase; letter-spacing: 2px;
             transition: background 0.3s;
         }
-        .btn-whatsapp:hover { background: #333; }
+        .btn-whatsapp:hover { background: var(--rojo); color: white; }
 
         .hidden { display: none; }
 
-        /* --- MEDIA QUERIES (Móvil) --- */
+        /* --- MEDIA QUERIES --- */
         @media (max-width: 480px) {
             header h1 { font-size: 3.8rem; }
             .filtros {
@@ -141,7 +147,7 @@
             .info h3 { font-size: 2.2rem; }
         }
 
-/* Estilos del Botón Flotante */
+        /* Estilos del Botón Flotante */
 .whatsapp-float {
     position: fixed;
     width: 60px;
@@ -195,7 +201,6 @@
         height: 28px;
     }
 }
-
     </style>
 </head>
 <body>
@@ -216,28 +221,28 @@
         <div class="producto" data-color="rojo">
             <div class="slider-container">
                 <img src="camiseta roja.png" class="active">
-                <img src="camiseta roja.png">
+                <img src="camiseta roja detalle.png">
                 <button class="btn-nav prev" onclick="cambiarImagen(this, -1)">&#10094;</button>
                 <button class="btn-nav next" onclick="cambiarImagen(this, 1)">&#10095;</button>
             </div>
             <div class="info">
                 <h3>Urban Crimson</h3>
                 <div class="precio">$35.00</div>
-                <a href="https://wa.me/tu_numero" class="btn-whatsapp">Comprar</a>
+                <a href="https://wa.me/tu_numero" class="btn-whatsapp">Comprar Ahora</a>
             </div>
         </div>
 
         <div class="producto" data-color="verde">
             <div class="slider-container">
                 <img src="chaqueta verde.png" class="active">
-                <img src="chaqueta verde.png">
+                <img src="chaqueta verde detalle.png">
                 <button class="btn-nav prev" onclick="cambiarImagen(this, -1)">&#10094;</button>
                 <button class="btn-nav next" onclick="cambiarImagen(this, 1)">&#10095;</button>
             </div>
             <div class="info">
                 <h3>Forest Jacket</h3>
                 <div class="precio">$70.00</div>
-                <a href="https://wa.me/tu_numero" class="btn-whatsapp">Comprar</a>
+                <a href="https://wa.me/tu_numero" class="btn-whatsapp">Comprar Ahora</a>
             </div>
         </div>
     </div>
@@ -256,11 +261,7 @@
         function filtrar(color) {
             const productos = document.querySelectorAll('.producto');
             productos.forEach(p => {
-                if (color === 'todos' || p.getAttribute('data-color') === color) {
-                    p.classList.remove('hidden');
-                } else {
-                    p.classList.add('hidden');
-                }
+                p.classList.toggle('hidden', color !== 'todos' && p.getAttribute('data-color') !== color);
             });
         }
     </script>
