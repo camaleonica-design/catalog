@@ -28,21 +28,23 @@
             line-height: 1.6;
         }
 
-        header {
-        background-color: #000; /* Fondo del sitio */
-        padding: 30px;
-        text-align: center;
-    }
-
-    .logo-parche {
-        width: 120px;
-        height: 120px;
-        border-radius: 50%;
-        border: none;
-        background-color: #ffffff; /* Esto mata la transparencia */
-        box-shadow: 0px 4px 12px rgba(0,0,0,0.5);
-        object-fit: contain;
-    }
+        header { text-align: center; margin-bottom: 40px; padding-top: 20px; }
+        
+.logo-parche {
+    width: 120px; 
+    height: 120px;
+    border-radius: 50%;
+    /* Quitamos el border anterior */
+    border: none; 
+    /* Agregamos fondo blanco sólido para eliminar la transparencia visual */
+    background-color: var(--blanco); 
+    /* Mantenemos la sombra pero más suave */
+    box-shadow: 0px 4px 15px rgba(0,0,0,0.3);
+    margin-bottom: 10px;
+    object-fit: cover;
+    /* Asegura que el contenido no se salga del círculo */
+    display: inline-block;
+}}
 
         header h1 { 
             font-family: var(--font-script);
